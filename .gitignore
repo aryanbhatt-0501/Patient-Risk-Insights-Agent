@@ -1,0 +1,23 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pkl
+*.pth
+
+# Environment - NEVER commit this
+.env
+
+# ChromaDB vector store
+.chromadb/
+
+# Next.js
+frontend/.next/
+frontend/node_modules/
+
+# Mac
+.DS_Store
+
+# App folder (was just our backend API route scaffold, replaced by frontend)
+app/
+EOF
