@@ -3,6 +3,9 @@
 An agentic AI system that lets clinicians and analysts upload patient datasets and ask natural language questions about diabetes risk. Combines **LangChain + LangGraph** orchestration, **RAG-based retrieval**, and **classical ML models** (Logistic Regression, KNN, MLP) as callable tools — all served through a **FastAPI** backend and **Next.js** frontend.
 
 > **Demo:** <img width="800" height="433" alt="demo" src="https://github.com/user-attachments/assets/3bee3d44-07c1-4437-997d-ee5679c15cb7" />
+
+<img width="803" height="451" alt="image" src="https://github.com/user-attachments/assets/a8b9e14d-16db-4b52-a00b-29aeb84b0eec" />
+
 ---
 
 ## 🧠 How It Works
