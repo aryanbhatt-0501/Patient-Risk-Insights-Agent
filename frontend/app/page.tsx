@@ -304,8 +304,6 @@ export default function Home() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [upload, setUpload] = useState<UploadState>({ status: "idle" });
-  const [hovSugg, setHovSugg] = useState<number | null>(null);
-  const [hovUpload, setHovUpload] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const taRef = useRef<HTMLTextAreaElement>(null);
@@ -348,6 +346,8 @@ export default function Home() {
   }
 
   async function handleSend() {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 60000); // 60 second timeout
     const q = input.trim();
     if (!q || loading) return;
     const next: Message[] = [...messages, { role: "user", content: q }];
@@ -359,7 +359,9 @@ export default function Home() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: q, history: messages }),
+        signal: controller.signal,
       });
+      clearTimeout(timeout);
       const data = await res.json();
       if (!res.ok) throw new Error(data.detail || "Query failed");
       setMessages([...next, { role: "assistant", content: data.answer }]);

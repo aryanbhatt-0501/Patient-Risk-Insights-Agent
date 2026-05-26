@@ -64,7 +64,8 @@ async def query_agent(req: QueryRequest):
     enriched_question = req.question
     if _dataset_cache and any(
         kw in req.question.lower()
-        for kw in ["cohort", "dataset", "all patients", "overview", "summary", "how many"]
+        for kw in ["summarise", "summarize", "overview", "how many", "percent", "percentage",
+                "cohort", "all patients", "entire dataset", "whole dataset"]
     ):
         sample = json.dumps(_dataset_cache[:10])
         enriched_question = f"{req.question}\n\n[Dataset JSON for cohort tool]: {sample}"

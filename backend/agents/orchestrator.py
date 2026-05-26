@@ -3,7 +3,7 @@ from typing import TypedDict, Annotated
 from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 
-from langchain_groq import ChatGroq 
+from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langgraph.graph import StateGraph, END
 from langgraph.prebuilt import ToolNode
@@ -36,7 +36,7 @@ class AgentState(TypedDict):
 
 
 def build_agent():
-    llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0)
+    llm = ChatOpenAI(model="grok-4.3", temperature=0, api_key=os.getenv("XAI_API_KEY"),base_url="https://api.x.ai/v1")
     model = llm.bind_tools(TOOLS)
 
     def retrieve_node(state: AgentState) -> AgentState:
